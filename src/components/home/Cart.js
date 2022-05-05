@@ -25,6 +25,7 @@ import {
   removeFromCart,
   removeAll,
   getTotal,
+  checkPurchase,
 } from "../redux/slice/CartSlice";
 import { addListBill } from "../redux/slice/BillSlice";
 
@@ -251,6 +252,7 @@ const Cart = () => {
     ];
     console.log(obj);
     dispatch(addListBill(obj));
+    dispatch(checkPurchase());
   };
 
   const validateMessages = {
@@ -269,7 +271,7 @@ const Cart = () => {
         </div>
       ),
       number: "${label} is not a valid number!",
-      name: "please"
+      name: "please",
     },
   };
 
@@ -317,9 +319,7 @@ const Cart = () => {
                 required
                 defaultValue={1}
               >
-                <Radio value={1}>
-                  COD
-                </Radio>
+                <Radio value={1}>COD</Radio>
                 <Radio value={2}>Credit Card</Radio>
               </Radio.Group>
               <div id="cod">

@@ -99,8 +99,13 @@ export const CartSlice = createSlice({
       state.cartTotalAmount = total
       state.cartTotalQuantity = quantity
     },
+
+    checkPurchase: (state)=>{
+      state.cartProduct = []
+      localStorage.setItem("cart", JSON.stringify(state.cartProduct));
+    }
   },
 });
 
-export const { addToCart, removeFromCart, removeAll, getTotal } = CartSlice.actions;
+export const { addToCart, removeFromCart, removeAll, getTotal, checkPurchase } = CartSlice.actions;
 export const cartSelector = (state) => state.cartProduct;
