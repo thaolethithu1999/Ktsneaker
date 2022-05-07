@@ -299,6 +299,11 @@ adidas
   margin-left: 5px;
 }
 
+.emptySearch {
+  color: lightslategrey;
+  margin-left: 490px;
+}
+
 /*
   cart
 */

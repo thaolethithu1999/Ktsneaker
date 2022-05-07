@@ -1,6 +1,7 @@
 {
   "name": "sneaker",
   "version": "0.1.0",
+  "homepage": "https://thaolethithu1999.github.io/Ktsneaker",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -12,7 +13,6 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "antd": "^4.20.2",
-    "gh-pages": "^3.2.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-fontawesome": "^1.7.1",
