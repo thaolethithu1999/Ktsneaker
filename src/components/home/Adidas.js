@@ -60,6 +60,7 @@ const AppAdidas = () => {
                         >
                           VIEW
                         </Button>
+                        {/* <img src="abc" /> */}
                       </div>
                     </Card>
                   </Col>
