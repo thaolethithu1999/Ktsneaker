@@ -25,11 +25,9 @@ const AppHeader = () => {
   };
 
   const onSearch = (e) => {
-    console.log(e);
     setKw(e);
     nav(`/search/`);
   };
-  console.log("kw:" + kw);
 
   useEffect(() => {
     dispatch(getKw(kw));
@@ -38,7 +36,6 @@ const AppHeader = () => {
 
   const cart = useSelector((state) => state.cart.cartProduct);
   let length = cart.length;
-  console.log(length);
 
   return (
     <div className="container-fluid mainLayout" >
@@ -69,7 +66,7 @@ const AppHeader = () => {
           <Button type="primary" onClick={showDrawer}>
             <i className="fas fa-bars"></i>
           </Button>
-          <Drawer placement="right" onClose={onClose} visible={visible}>
+          <Drawer placement="right" onClose={onClose} open={visible}>
             <Anchor targetOffset="65">
               <Link href="/#hero" title="Home" />
               <Link href="/#adidas" title="Adidas" />

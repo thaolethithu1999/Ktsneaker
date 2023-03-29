@@ -7,13 +7,9 @@ import { getListProduct, productsSelector } from "../redux/slice/ProductsSlice";
 
 const AppNike = () => {
   const nav = useNavigate();
-
-  const { products } = useSelector(productsSelector);
-  console.log(products);
-
-  let count = 0;
-
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
+  let count = 0;
 
   useEffect(() => {
     dispatch(getListProduct());

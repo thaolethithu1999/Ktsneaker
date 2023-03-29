@@ -22,14 +22,12 @@ export const CartSlice = createSlice({
         const proIndex = state.cartProduct.findIndex(
           (pro) => pro.key === action.payload.productId
         );
-        console.log("pro check " + proIndex);
 
         const chooseSize = state.cartProduct.findIndex(
           (pro) =>
             pro.size.includes(action.payload.size) &&
             pro.key === action.payload.productId
         );
-        console.log("size check" + chooseSize);
 
         if (proIndex >= 0 && chooseSize >= 0) {
           state.cartProduct[proIndex].quantity += 1;
@@ -53,16 +51,11 @@ export const CartSlice = createSlice({
             },
           ];
 
-          // state.cartTotalQuantity += parseInt(state.cartProduct.quantity)
-          console.log("total quan: " + state.cartTotalQuantity);
-          //state.cartProduct = [{...state.cartProduct, size: action.payload.size, quantity: action.payload.quantity}]
           notification["success"]({
             message: "Your choice in cart now!",
           });
           localStorage.setItem("cart", JSON.stringify(state.cartProduct));
         }
-
-        //localStorage.setItem("cart", JSON.stringify(state.cartProduct));
       }
     },
 
@@ -109,3 +102,4 @@ export const CartSlice = createSlice({
 
 export const { addToCart, removeFromCart, removeAll, getTotal, checkPurchase } = CartSlice.actions;
 export const cartSelector = (state) => state.cartProduct;
+export default CartSlice.reducer;

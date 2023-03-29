@@ -1,33 +1,23 @@
 import {
-  CloseOutlined,
-  HeartOutlined,
-  QuestionCircleOutlined,
+  HeartOutlined, QuestionCircleOutlined
 } from "@ant-design/icons";
 import {
   Button,
-  Col,
-  Collapse,
-  Form,
+  Col, Form,
   Image,
-  Input,
-  InputNumber,
-  Popconfirm,
+  Input, Popconfirm,
   Radio,
   Row,
   Select,
   Table,
-  Tag,
+  Tag
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cartSelector,
-  removeFromCart,
-  removeAll,
-  getTotal,
-  checkPurchase,
-} from "../redux/slice/CartSlice";
 import { addListBill } from "../redux/slice/BillSlice";
+import {
+  checkPurchase, getTotal, removeAll, removeFromCart
+} from "../redux/slice/CartSlice";
 
 const { Option } = Select;
 
@@ -64,22 +54,6 @@ const Cart = () => {
     {
       title: <div className="prosName">Quantity</div>,
       dataIndex: "quantity",
-      // render: (quantity, row, index) => {
-      //   let a = 0;
-      //   return (
-      //     <InputNumber
-      //       min={1}
-      //       max={10}
-      //       defaultValue={quantity}
-      //       onChange={(e) => (
-      //         console.log(index),
-      //         console.log("quan " + e),
-      //         setNewPrice(row.price * e),
-      //         setQuantity(e)
-      //       )}
-      //     />
-      //   );
-      // },
     },
     {
       title: <div className="prosName">Price</div>,
@@ -125,7 +99,6 @@ const Cart = () => {
           <Tag
             color="#fa8c16"
             className="btnDeleteAll"
-            //onClick={() => dispatch(removeAll())}
           >
             Remove All
           </Tag>
@@ -145,7 +118,6 @@ const Cart = () => {
             <Tag
               color="orange"
               className="btnDelete"
-              // onClick={() => dispatch(removeFromCart(key))}
             >
               Remove
             </Tag>
@@ -195,28 +167,11 @@ const Cart = () => {
     },
   ];
 
-  const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-    onSelect: (record, selected, selectedRows) => {
-      console.log(record, selected, selectedRows);
-    },
-    onSelectAll: (selected, selectedRows, changeRows) => {
-      console.log(selected, selectedRows, changeRows);
-    },
-  };
-
   const [value, setValue] = useState(1);
   const [payment, setPayment] = useState("cod");
 
   const onChangeRadio = (e) => {
     const choice = e.target.value;
-    console.log("radio checked: ", e.target.value);
     if (choice === 1) {
       document.getElementById("cod").style.display = "block";
       document.getElementById("credit").style.display = "none";
@@ -235,12 +190,6 @@ const Cart = () => {
   };
 
   const onFinish = (values) => {
-    console.log(values);
-    console.log(values.customer.name);
-    console.log(values.customer.email);
-    console.log(values.customer.phone);
-    console.log(values.customer.address);
-    console.log(values.customer.otherRequest);
     const obj = [
       {
         ...values.customer,
@@ -250,7 +199,6 @@ const Cart = () => {
         quanity: quan,
       },
     ];
-    console.log(obj);
     dispatch(addListBill(obj));
     dispatch(checkPurchase());
   };

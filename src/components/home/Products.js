@@ -14,24 +14,16 @@ import {
 
 const AppProducts = () => {
   const nav = useNavigate();
-
-  const { products } = useSelector(productsSelector);
-  const searchProducts = useSelector(searchProductSelector);
-  console.log("search: " + searchProducts);
-  console.log(products);
-  console.log(products.length);
-  let count = 0;
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getListProduct());
-  }, []);
-
+  const products = useSelector((state) => state.products.products);
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(12);
   const numEachPage = 12;
   const length = parseInt(products.length);
+
+  useEffect(() => {
+    dispatch(getListProduct());
+  }, []);
 
   const handleChange = (e) => {
     setMinValue((e - 1) * numEachPage);

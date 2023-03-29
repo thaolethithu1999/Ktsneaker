@@ -1,7 +1,7 @@
 import {
   ArrowRightOutlined,
   HeartFilled,
-  ShoppingCartOutlined,
+  ShoppingCartOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -11,7 +11,7 @@ import {
   InputNumber,
   notification,
   Radio,
-  Row,
+  Row
 } from "antd";
 import "antd/dist/antd.min.css";
 import React, { useEffect, useState } from "react";
@@ -20,13 +20,13 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../App.css";
-import { getProductById, productSelector } from "../redux/slice/ProductSlice";
-import { getListProduct, productsSelector } from "../redux/slice/ProductsSlice";
 import { addToCart } from "../redux/slice/CartSlice";
+import { getProductById } from "../redux/slice/ProductSlice";
+import { getListProduct } from "../redux/slice/ProductsSlice";
 
 const AppDetail = () => {
-  const { product } = useSelector(productSelector);
-  const { products } = useSelector(productsSelector);
+  const product = useSelector((state) => state.product.product);
+  const products= useSelector((state) => state.products.products);
   const dispatch = useDispatch();
   const param = useParams();
   const nav = useNavigate();
@@ -34,19 +34,17 @@ const AppDetail = () => {
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   let count = 0;
-
+  
   useEffect(() => {
     dispatch(getProductById(productId));
     dispatch(getListProduct());
   }, [productId]);
 
   const handleChangeQuantity = (e) => {
-    console.log(e);
     setQuantity(e);
   };
 
   const handleChangeSize = (e) => {
-    console.log(e.target.value);
     setSize(e.target.value);
   };
 
@@ -62,6 +60,7 @@ const AppDetail = () => {
   };
 
   return (
+    //<></>
     <div className="block">
       <Row className="detailArea" gutter={[0, 0]} style={{ minWidth: "100%" }}>
         <Col span={10} className="productImgArea">
@@ -80,13 +79,10 @@ const AppDetail = () => {
             })}
           </Carousel>
         </Col>
-
         <Col span={14} className="productInfoArea">
           <div>
             <h1 className="proName">{product.name}</h1>
-
             <h4>SKU: {product.productKey}</h4>
-
             <h4>
               Price:
               <span className="proPrice">
@@ -96,7 +92,6 @@ const AppDetail = () => {
                 })}
               </span>
             </h4>
-
             <h4>
               Size:
               <span style={{ marginLeft: "5px" }}>
@@ -119,7 +114,6 @@ const AppDetail = () => {
                 </Radio.Group>
               </span>
             </h4>
-
             <h4>
               Quantity:
               <span style={{ marginLeft: "5px" }}>
@@ -137,7 +131,6 @@ const AppDetail = () => {
               className="btnAddCart"
               onClick={
                 () => dispatch(addToCart({ productId, size, quantity }))
-                //nav("/your-cart")
               }
             >
               <ShoppingCartOutlined style={{ fontSize: "25px" }} />

@@ -17,3 +17,4 @@ export const BillSlice = createSlice({
 });
 
 export const { addListBill } = BillSlice.actions;
+export default BillSlice.reducer;

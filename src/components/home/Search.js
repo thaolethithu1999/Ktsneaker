@@ -7,9 +7,7 @@ import { HeartFilled, SmileOutlined } from "@ant-design/icons";
 
 const Search = () => {
   let nav = useNavigate();
-
   const products = useSelector((state) => state.products.searchProducts);
-  console.log(products);
 
   return (
     <div className="block" style={{ marginTop: "70px" }}>
@@ -52,7 +50,7 @@ const Search = () => {
                       </h4>
                       <Button
                         className="btnView"
-                        onClick={() => nav(`/${product.key}`)}
+                        //onClick={() => nav(`/${product.key}`)}
                       >
                         VIEW
                       </Button>

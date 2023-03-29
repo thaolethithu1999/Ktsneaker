@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Divider, Row } from "antd";
+import { Button, Card, Col, Row } from "antd";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-import { getListProduct, productsSelector } from "../redux/slice/ProductsSlice";
+import { getListProduct } from "../redux/slice/ProductsSlice";
 
 const AppAdidas = () => {
   const nav = useNavigate();
-
-  const { products } = useSelector(productsSelector);
-  console.log(products);
-
-  let count = 0;
-
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
+  let count = 0;
 
   useEffect(() => {
     dispatch(getListProduct());
@@ -59,7 +55,6 @@ const AppAdidas = () => {
                         <Button
                           className="btnView"
                           onClick={() => {
-                            //nav(`/${product.key}`);
                             <Link to={`/${product.key}`} />;
                           }}
                         >
